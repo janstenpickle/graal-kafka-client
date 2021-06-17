@@ -11,7 +11,7 @@ Graal Substrate VM substitutions that allow the Java Kafka Client to work with `
 Add the following dependencies to your `build.sbt`, no other setup should be required.
 
 ```scala
-"io.janstenpickle" %% "graal-kafka-client" % "0.1.0"
+"io.janstenpickle" % "graal-kafka-client" % "0.1.0"
 ```
 
 
