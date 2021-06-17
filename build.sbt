@@ -1,13 +1,5 @@
 lazy val commonSettings = Seq(
   Compile / compile / javacOptions ++= Seq("-source", "1.8", "-target", "1.8"),
-  scalacOptions := {
-    val opts = scalacOptions.value
-    val wconf = "-Wconf:any:wv"
-    CrossVersion.partialVersion(scalaVersion.value) match {
-      case Some((2, _)) => opts :+ wconf
-      case _ => opts
-    }
-  },
   Test / fork := true,
   resolvers += Resolver.sonatypeRepo("releases"),
   ThisBuild / evictionErrorLevel := Level.Error,
