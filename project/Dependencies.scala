@@ -3,7 +3,7 @@ import sbt._
 object Dependencies {
   object Versions {
     val kafka = "2.8.0"
-    val micronaut = "2.5.11"
+    val micronaut = "2.5.12"
     val scala3 = "3.0.1"
     val svm = "19.2.1"
   }
