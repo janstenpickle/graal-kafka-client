@@ -2,12 +2,16 @@ ThisBuild / scalaVersion := Dependencies.Versions.scala3
 ThisBuild / githubWorkflowTargetTags ++= Seq("v*")
 ThisBuild / githubWorkflowJavaVersions := Seq("graalvm@20.1.0")
 
-ThisBuild / githubWorkflowBuildPreamble += WorkflowStep.Sbt(List("scalafmtCheckAll", "scalafmtSbtCheck"))
+ThisBuild / githubWorkflowBuildPreamble += WorkflowStep.Sbt(
+  List("scalafmtCheckAll", "scalafmtSbtCheck"),
+  name = Some("Check formatting")
+)
 
 ThisBuild / githubWorkflowPublishTargetBranches := Seq(RefPredicate.Equals(Ref.Branch("master")))
 ThisBuild / githubWorkflowPublish := Seq(
   WorkflowStep.Sbt(
     List("ciReleaseSonatype"),
+    name = Some("Publish artifacts"),
     env = Map(
       "SONATYPE_PASSWORD" -> "${{ secrets.SONATYPE_PASSWORD }}",
       "SONATYPE_USERNAME" -> "${{ secrets.SONATYPE_USERNAME }}"
@@ -16,10 +20,10 @@ ThisBuild / githubWorkflowPublish := Seq(
 )
 ThisBuild / githubWorkflowPublishCond := Some("github.actor != 'mergify[bot]'")
 ThisBuild / githubWorkflowPublishPreamble += WorkflowStep.Use(
-  ref = UseRef.Public("crazy-max", "ghaction-import-gpg", "v3"),
+  ref = UseRef.Public("crazy-max", "ghaction-import-gpg", "v4"),
   id = Some("import_gpg"),
   name = Some("Import GPG key"),
-  params = Map("gpg-private-key" -> "${{ secrets.GPG_PRIVATE_KEY }}", "passphrase" -> "${{ secrets.PGP_PASS }}")
+  params = Map("gpg_private_key" -> "${{ secrets.GPG_PRIVATE_KEY }}", "passphrase" -> "${{ secrets.PGP_PASS }}")
 )
 
 ThisBuild / publishTo := sonatypePublishToBundle.value
