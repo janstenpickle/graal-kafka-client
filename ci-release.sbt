@@ -1,6 +1,6 @@
 ThisBuild / scalaVersion := Dependencies.Versions.scala3
 ThisBuild / githubWorkflowTargetTags ++= Seq("v*")
-ThisBuild / githubWorkflowJavaVersions := Seq("graalvm@20.1.0")
+ThisBuild / githubWorkflowJavaVersions := Seq(JavaSpec.graalvm("20.1.0", "8"))
 
 ThisBuild / githubWorkflowBuildPreamble += WorkflowStep.Sbt(
   List("scalafmtCheckAll", "scalafmtSbtCheck"),
