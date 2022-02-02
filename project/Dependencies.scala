@@ -4,7 +4,7 @@ object Dependencies {
   object Versions {
     val kafka = "2.8.1"
     val micronaut = "3.3.0"
-    val scala3 = "3.1.0"
+    val scala3 = "3.1.1"
     val svm = "19.2.1"
   }
 
